@@ -1,0 +1,35 @@
+{% extends '../index.html' %} {% block content %}
+<div class="user_container">
+  <h2>
+    Hello
+    <strong>{{ request.user }} </strong>
+    you can write yor blog here!!
+  </h2>
+  <form method="POST" enctype="multipart/form-data" class="user_form">
+    {% csrf_token %}
+    <div>
+      <label for="id_title">Title</label>
+      <div class="inputf">{{ form.title }}</div>
+    </div>
+
+    <div>
+      <label for="id_content">Content</label>
+      <div>{{ form.content }}</div>
+    </div>
+    <div class="image_u">
+      <label for="id_img">Image</label>
+      <div>{{ form.img }}</div>
+    </div>
+    <div>
+      <button type="submit" class="btn_u">Submit</button>
+    </div>
+
+    <div class="see_blogs-div">
+      <a href="{% url 'myapp:user_blogs' %}" class="see_blogs"
+        >See your blogs</a
+      >
+    </div>
+  </form>
+</div>
+
+{% endblock %}

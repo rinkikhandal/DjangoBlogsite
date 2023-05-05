@@ -1,0 +1,36 @@
+{% extends '../index.html' %} {% block content %}
+<div class="home_container" id="top">
+  {% for blog in data %}
+
+  <div class="home_div">
+    <div class="home_detail">
+      <figure>
+        <blockquote class="blockquote">
+          <p>{{ blog.title }}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          -- by {{ blog.author }}
+        </figcaption>
+      </figure>
+
+      <pre><p class="home_content">{{ blog.content}}</p></pre>
+      <p class="home_pub">
+        <span> Published on_ {{ blog.publish_date }}</span>
+      </p>
+    </div>
+    <div class="home_img">
+      <img
+        src="{{ blog.img.url }}"
+        alt="Image Not Available"
+        class="img-thumbnail"
+      />
+    </div>
+  </div>
+
+  {% endfor %}
+  <a href="#top" class="top_toggle"
+    ><i class="fa-solid fa-chevron-up fa-2x"></i
+  ></a>
+</div>
+
+{% endblock %}

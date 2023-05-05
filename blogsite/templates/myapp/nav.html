@@ -1,0 +1,39 @@
+<nav>
+  <a href="{% url 'myapp:index_page' %}" class="heading_link">
+    <h1>Love of wisdom</h1>
+  </a>
+
+  <div class="search">
+    <div class="search_icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <form method="POST" class="search_input-div">
+      {% csrf_token %}
+
+      <input class="search_input" type="text" placeholder="Search" />
+    </form>
+  </div>
+  <div class="links">
+    <!-- <div class="togglesearch">
+      
+    </div> -->
+    <div>
+      {% if user.is_authenticated %}
+      <a href="{% url 'myapp:logout' %}" class="back_nav">Log_out</a>
+      {% else %}
+      <!-- <a href="{% url 'myapp:register_page' %} " class="back">Sign up</a> | -->
+      <a href="{% url 'myapp:login_page' %}" class="back_nav">Log_in</a>
+      {% endif %}
+    </div>
+    <div class="user_active">
+      <div>
+        <a class="user_active_link" href="{% url 'myapp:user_blogs' %}"
+          ><i class="fa-solid fa-user"></i
+        ></a>
+      </div>
+      {% if user.is_authenticated %}
+      <div class="active_user_name">{{ request.user }}</div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<!-- {% block content %} {% endblock %} -->

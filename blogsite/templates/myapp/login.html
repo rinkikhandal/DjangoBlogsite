@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesome-free-6.0.0-web/css/all.css' %}"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="{% url 'myapp:index_page' %}" class="home_icon"
+      ><i class="fa-solid fa-arrow-left"></i
+    ></a>
+    <div class="login"></div>
+    <div class="form_div">
+      <form method="POST" class="lform">
+        <h1 id="login">Log_in</h1>
+        {% csrf_token %}
+        <label for="id_username">Username</label>
+        <div class="inputf">{{ form.username }}</div>
+        <label for="id_password">Password</label>
+        <div class="inputf">{{ form.password }}</div>
+        {% if error %}
+        <ul class="messages">
+          <li><i>{{ error }}</i></li>
+        </ul>
+        {% endif %}
+
+        <div class="btn_div">
+          <button class="btn" type="submit">Log_in</button>
+        </div>
+        <div class="link-div">
+          <a href="{% url 'myapp:register_page' %}" class="log_reg"
+            >if don't have an account then <strong>Sign_in</strong>
+          </a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

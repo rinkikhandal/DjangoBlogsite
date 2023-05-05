@@ -1,0 +1,62 @@
+{% extends '../index.html' %} {% block content %}
+
+<div class="home_container" id="top">
+  <h1 class="my_blogs">Your Blogs</h1>
+
+  <div class="writeblog">
+    <a href="{% url 'myapp:user_page' %}">Write your Blog</a>
+  </div>
+
+  {% if data %} {% for blog in data %}
+  <div class="home_div">
+    <div class="home_detail">
+      <figure>
+        <blockquote class="blockquote" style="margin-bottom: 20px">
+          <p>{{ blog.title }}</p>
+        </blockquote>
+      </figure>
+      <pre>
+      <p class="home_content">{{ blog.content }}</p></pre>
+      <p class="home_pub">
+        <span> Published on_ {{ blog.publish_date }}</span>
+      </p>
+    </div>
+    <div class="home_img">
+      <img
+        src="{{ blog.img.url }}"
+        alt="Image Not Available"
+        class="img-thumbnail"
+      />
+    </div>
+  </div>
+  <div class="ed_del">
+    <a class="edit ed_del-links" href="{% url 'myapp:edit_blog' blog.id %}"
+      >Edit</a
+    >
+    <a class="delete ed_del-links" href="{% url 'myapp:delete_blog' blog.id %}"
+      >Delete</a
+    >
+  </div>
+  <hr
+    style="
+      border: 1px solid rgb(173, 175, 173);
+      box-shadow: -0.5px -0.5px 1px 1px rgb(214, 213, 213);
+    "
+  />
+  {% endfor %}{% else %}
+  <div class="empty">
+    <!-- <i class="fa-solid fa-face-grin-tongue-wink"></i> -->
+    <div class="empty_emoji">(@ _ @)</div>
+    <div class="empty_text">
+      <h3>No Blogs Found!!</h3>
+      Come-on write something!!!
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% if data %}
+<a href="#top" class="top_toggle"
+  ><i class="fa-solid fa-chevron-up fa-2x"></i
+></a>
+
+{% endif %} {% endblock %}
